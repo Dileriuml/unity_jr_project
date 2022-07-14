@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -10,7 +7,23 @@ public class ResourcePile : Building
 {
     public ResourceItem Item;
 
-    public float ProductionSpeed = 0.5f;
+    private float productionSpeed = 0.5f;
+
+    public float ProductionSpeed
+    {
+        get => productionSpeed;
+        set
+        {
+            if (value < 0f)
+            {
+                Debug.LogError("You can't set a negative production speed");
+            }
+            else
+            {
+                productionSpeed = value;
+            }
+        }
+    }
 
     private float m_CurrentProduction = 0.0f;
 
@@ -35,6 +48,4 @@ public class ResourcePile : Building
         return $"Producing at the speed of {ProductionSpeed}/s";
         
     }
-    
-    
 }
